@@ -1,0 +1,53 @@
+{% load user_tags %}
+{% load humanize %}
+
+{% if not reply.is_deleted or reply.get_active_child_replies|length != 0 %}
+<div class="reply" data-id="{{reply.id}}">
+    {% with reply.author.get_data as author %}
+        <div class="img-block">
+            <a href="{% url 'user' user=author.name %}" style="color: {{author.webData.color|fix_chat_color}};">
+                <img src="https://crafatar.com/avatars/{{author.uuid}}?size=24&overlay">
+            </a>
+            <div class="line"></div>
+        </div>
+        <div class="content-block">
+            <a href="{% url 'user' user=author.name %}" style="color: {{author.webData.color|fix_chat_color}};">
+                {{author.name}}
+            </a>
+            <span class="date">{{reply.created_at|naturaltime}}
+            {% if reply.edited_by %}
+                , edited <span class="reply-edit-time">{{reply.edited_at|naturaltime}}</span> by 
+                {% with reply.edited_by.get_data as editor %}
+                    <a href="{% url 'user' user=editor.name %}" style="color: {{editor.webData.color|fix_chat_color}}">{{editor.name}}</a>
+                {% endwith %}
+            {% endif %}
+            </span>
+            <span class="reply-tools">
+                {% if user.is_authenticated %}
+                <button type="submit" data-reply="{{reply.id}}" class="btn btn-ter thread-reply-child-reply">Reply</button>
+                    {% if reply.author == user or user|has_permission:"admin" %}
+                        {% if not reply.is_deleted %}
+                            <button type="submit" data-reply="{{reply.id}}" class="btn btn-primary thread-reply-edit">Edit</button>
+                            <button type="submit" data-reply="{{reply.id}}" class="btn btn-danger thread-reply-delete">Delete</button>
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+            </span>
+            <div class="content">
+                {% if reply.is_deleted %}
+                    <span class="deleted">[Deleted]</span>
+                {% else %}
+                {{reply.content|striptags|linebreaksbr|urlize}}
+                {% endif %}
+            </div>
+            {% if reply.get_active_child_replies|length != 0%}
+                <div class="children">
+                    {% for child in reply.get_active_child_replies %}
+                        {% include 'forums/partial/reply.html' with reply=child %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    {% endwith %}
+</div>
+{% endif %}

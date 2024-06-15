@@ -1,0 +1,223 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+   <title> {% block title %} {% endblock %} </title>
+   {% comment %} <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> {% endcomment %}
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css">
+   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+   <script src="{% static 'app.js' %}"></script>
+   <link rel="icon" type="image/png" href="{% static 'images/logo.png' %}">
+   {% comment %} <link rel="stylesheet" href="{% static 'app.css' %}"> {% endcomment %}
+    
+   <!-- Global site tag (gtag.js) - Google Analytics -->
+	{% comment %} <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158791694-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-158791694-1');
+	</script> {% endcomment %}
+  <link rel="stylesheet" href="https://unpkg.com/tailwindcss/dist/tailwind.min.css">
+  <link rel="stylesheet" href="{% static 'bar.css' %}">
+   {% block tags %} {% endblock %}
+</head>
+
+  <body class="text-white">
+    <div class="background-img z-10"><div class="w-full h-full"></div></div>
+    <!-- Top portion of the page -->
+    <div class="z-20 py-4 w-full bg-white bg-opacity-5">
+      <div class="md:mx-96 mx-6">
+        <div class="flex flex-1 flex-row items-center justify-between">
+          <div>
+            <nav
+              class="flex flex-1 text-g flex-row items-center space-x-8 text-sm"
+            >
+              <a href="/" class="{% block nav_home %}{% endblock %}">Home</a>
+              <a href="/forums" class="{% block nav_forums %}{% endblock %}">Forums</a>
+              <a href="/leaderboards" class="{% block nav_leaderboards %}{% endblock %}">Leaderboards</a>
+              <a href="/staff" class="{% block nav_staff %}{% endblock %}">Staff</a>
+            </nav>
+          </div>
+          <div>
+            <nav class="flex flex-1 flex-row items-center space-x-4 text-sm">
+              <input
+                type="text"
+                placeholder="search..."
+                class="
+                  nav-opacity
+                  bg-primary
+                  px-6
+                  py-2
+                  text-xs
+                  rounded-full
+                  border-none
+                  focus:border-none focus:outline-none
+                "
+              />
+              <a
+                href="https://store.pvp.bar"
+                class="
+                  font-bold
+                  color-gold
+                  bg-primary
+                  nav-opacity
+                  px-6
+                  py-2
+                  rounded-full
+                "
+                >Store</a
+              >
+              {% if user.is_authenticated %}
+              <a href="{% url 'user' user=user.get_data.name %}">
+                <span class="relative inline-flex rounded-md shadow-sm">
+                 <img
+                   src="https://minotar.net/avatar/{{user.uuid}}/32"
+                   class="rounded-full"
+                   alt=""
+                />
+                 <span class="flex absolute h-2 w-2 top-0 right-0">
+                   <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                   <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                 </span>
+               </span>
+               </a>
+              {% else %}
+              <a href="/login">
+               <span class="relative inline-flex rounded-md shadow-sm">
+                <img
+                  src="https://minotar.net/avatar/connor4312/32"
+                  class="rounded-full"
+                  alt=""
+               />
+              </span>
+              </a>
+              {% endif %}
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <header class="md:mx-96 mx-6 z-20">
+      <!-- Discord and Server IP and Logo -->
+      <div class="flex flex-1 items-center justify-between mt-12">
+        <div class="px-6 py-4 bg-black bg-opacity-30 rounded-lg shadow-md">
+          <div class="flex flex-1 flex-row items-center space-x-4">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              aria-hidden="true"
+              focusable="false"
+              width="3em"
+              height="3em"
+              style="
+                -ms-transform: rotate(360deg);
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+              "
+              preserveAspectRatio="xMidYMid meet"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M4 2h16a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2m2 4v4h4v2H8v6h2v-2h4v2h2v-6h-2v-2h4V6h-4v4h-4V6H6z"
+                fill="#F59E0B"
+              />
+              <rect
+                x="0"
+                y="0"
+                width="24"
+                height="24"
+                fill="rgba(0, 0, 0, 0)"
+              />
+            </svg>
+            <div class="text-xl">
+              <div class="font-bold uppercase">pvp.bar</div>
+              <div class="text-g text-sm font-medium">5,000 players online</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <img src="{% static 'images/logo.png' %}" alt="" class="w-48 h-48" />
+        </div>
+        <div class="px-6 py-4 bg-black bg-opacity-30 rounded-lg shadow-md">
+          <div class="flex flex-1 flex-row items-center space-x-4">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              aria-hidden="true"
+              focusable="false"
+              width="3em"
+              height="3em"
+              style="
+                -ms-transform: rotate(360deg);
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+              "
+              preserveAspectRatio="xMidYMid meet"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M22 24l-5.25-5l.63 2H4.5A2.5 2.5 0 0 1 2 18.5v-15A2.5 2.5 0 0 1 4.5 1h15A2.5 2.5 0 0 1 22 3.5V24M12 6.8c-2.68 0-4.56 1.15-4.56 1.15c1.03-.92 2.83-1.45 2.83-1.45l-.17-.17c-1.69.03-3.22 1.2-3.22 1.2c-1.72 3.59-1.61 6.69-1.61 6.69c1.4 1.81 3.48 1.68 3.48 1.68l.71-.9c-1.25-.27-2.04-1.38-2.04-1.38S9.3 14.9 12 14.9s4.58-1.28 4.58-1.28s-.79 1.11-2.04 1.38l.71.9s2.08.13 3.48-1.68c0 0 .11-3.1-1.61-6.69c0 0-1.53-1.17-3.22-1.2l-.17.17s1.8.53 2.83 1.45c0 0-1.88-1.15-4.56-1.15m-2.07 3.79c.65 0 1.18.57 1.17 1.27c0 .69-.52 1.27-1.17 1.27c-.64 0-1.16-.58-1.16-1.27c0-.7.51-1.27 1.16-1.27m4.17 0c.65 0 1.17.57 1.17 1.27c0 .69-.52 1.27-1.17 1.27c-.64 0-1.16-.58-1.16-1.27c0-.7.51-1.27 1.16-1.27z"
+                fill="#F59E0B"
+              />
+            </svg>
+            <div class="text-lg">
+              <div class="font-bold uppercase">Our Discord</div>
+              <div class="text-g text-sm font-medium">2,123 users online</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- App -->
+    <div class="mt-6 md:mx-96 mx-6 z-20">
+      <div>
+        <div
+          class="px-5 py-5 bg-title rounded-t-lg font-bold border-b shadow-sm"
+        >
+          
+          <div class="flex flex-1 flex-row items-center justify-between">
+            <div>
+              <div class="flex flex-1 flex-row items-center space-x-2 text-sm text-g">
+                <a href="/" class="bc">Home</a>
+                {% include 'svg/right_chev.html' %}
+                {% block mainPoint %} {% endblock %}
+             </div>
+            </div>
+            <div>{% block bcrum_end %} {% endblock %}</div>
+          </div>
+
+        </div>
+        <div class="px-5 py-3 bg-secondary rounded-b-lg">
+          <div class="mb-5 my-2.5 mx-5">
+            <!-- News -->
+            {% block content %} {% endblock %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer -->
+    <footer class="mt-12 z-20">
+      <div class="bg-secondary py-6">
+        <div class="text-g text-center">
+          Join <span id="player_footer">5</span> players on
+          <span class="bg-primary bg-opacity-75 px-4 py-2 rounded-full ml-1"
+            >pvp.bar</span
+          >
+        </div>
+      </div>
+      <div class="bg-primary py-6">
+        <div class="md:mx-96 mx-6 text-g"> Indium Games LLC. Copyright 2021.</div>
+      </div>
+    </footer>
+  </body>
+
+</html>

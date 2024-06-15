@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load user_tags %}
+{% load static %}
+
+{% block title %} 500 | Clover Network {% endblock %}
+
+{% block header %} 500 {% endblock %}
+
+{% block content %}
+<div class="alert alert-danger" role="alert">
+  <h1>Error 500</h1>
+  <hr>
+  <p>It looks like something went wrong while trying to run this action. <a href="{% url 'index' %}">Click here to
+      return to the home page</a></p>
+</div>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load user_tags %}
+{% load static %}
+
+{% block title %} Teams SOTW | Clover Network {% endblock %}
+
+{% block header %}
+<h1>SOTW (Sunday 2 PM EST)</h1>
+{% endblock %}
+
+{% block tags %}
+<link rel="stylesheet" href="{% static 'css/launch.css' %}">
+<script src="{% static 'js/launches/sotw.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="block">
+    <div class="block-title">
+    Teams SOTW <span id="time">begins in 0 seconds</span>
+    </div>
+
+    <div class="content-server">
+        <h3>SOTW Information (Sunday, 25th at 2 PM EST)</h3>
+        <ul>
+            <li>Diamond, Rogue, Archer, Bard, Builder and <strong>**NEW**</strong> Unknown Kit.</li>
+            <li>Smooth KB / Potions. (Prone to change in the future depending on community reaction)</li>
+            <li>At the end of each map, the #1 player will recieve the elusive [#1] Tag and $25 giftcard.</li>
+            <li>2 hour SOTW Timer with <code>/sotw enable</code>.</li>
+            <li>5 Man Factions, 0 Allies.</li>
+            <li>Map Kit: Protection 1, Sharpness 1.</li>
+            <li>Carepackges that spawn in the warzone randomily every 5 minutes.</li>
+            <li>Pearling through fencegates enabled.</li>
+            <li>Faction Missions, complete to earn capture points.</li>
+            <li>Faction Upgrades that require capture points to purchase.</li>
+            <li>Warzone Size: 100 Blocks</li>
+            <li>World Limit: 3000 Blocks</li>
+            <li>+ More</li>
+        </ul>
+    </div>
+
+    <div class="content-server">
+        <h3>New Ability Items (Purchasable through our store)</h3>
+        <ul>
+            <li>Grappling Hook - Grapple to certain locations.</li>
+            <li>Alchemist's Potion - Get's a random OP option effect on use (Like Strength 3 for 5 seconds).</li>
+            <li>Teleport Ball - Switch locations with player hit.</li>
+            <li>Knockback Egg - On hit, the player will take 5 blocks of Knockback.</li>
+            <li>Firework Jet - Won't take fall damage.</li>
+            <li>(More to come soon)</li>
+        </ul>
+    </div>
+
+    <div class="content-server">
+        <h3>New Rank Prices (Purchasable through our store)</h3>
+        <ul>
+            <li>Sunflower rank: <strong>$17.5</strong></li>
+            <li>Rose rank: <strong>$8.4</strong></li>
+            <li>Lily rank: <strong>$6.3</strong></li>
+            <li>Iris rank: <strong>$3.5</strong></li>
+            <li>Leaf rank: <strong>$1.58</strong></li>
+            <li>Petal rank: <strong>$0.70</strong></li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

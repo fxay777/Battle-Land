@@ -1,0 +1,50 @@
+.title {
+    color: #6ae691;
+    font-size: 20px;
+    font-weight: 500;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.faction-info .value {
+    margin: 10px 0;
+    font-size: 15px;
+    color: #c8c8c8;
+}
+
+.value span {
+    float: right;
+}
+
+.member {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.member img {
+    border-radius: 8px;
+    margin-right: 10px;
+}
+
+.member a {
+    font-size: 15px;
+    color: white !important;
+    font-weight: 600;
+}
+
+.member .rank {
+    padding: 1px 6px;
+    border-radius: 4px;
+    margin-right: 4px;
+}
+
+.btns {
+    display: inline-block;
+    float: right;
+}
+
+.btns .btn {
+    padding: 3px 12px;
+    margin-left: 5px;
+    font-size: 12px;
+}

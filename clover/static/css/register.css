@@ -1,0 +1,28 @@
+h3 {
+    color: #6ae691;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.cards {
+    display: flex;
+}
+
+.cards .card {
+    background-color: #343a40 !important;
+
+    margin-right: 10px;
+}
+
+.cards .card:last-of-type {
+    margin-right: 0 !important;
+}
+
+.name-group {
+    color: #6ae691;
+    padding: 5px;
+    font-size: 20px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}

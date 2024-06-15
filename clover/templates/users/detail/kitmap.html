@@ -1,0 +1,108 @@
+{% extends 'users/user.html' %}
+{% load static %}
+{% load user_tags %}
+{% load faction_tags %}
+
+{% block user_kitmap %} active {% endblock %}
+
+{% block detail %}
+
+{% if kitmap.faction %}
+<div class="row">
+    <div class="col-md-6">
+        <div class="info-card card mt-2">
+            <h4 class="detail-label center-text">Stats</h4>
+            <div class="info">
+                <p>Kills <strong>{{kitmap.kills}}</strong></p>
+                <p>Deaths <strong>{{kitmap.deaths}}</strong></p>
+                <p>Playtime <strong>{{kitmap.playtime|convert_playtime}}</strong></p>
+                <p>Lives <strong>{{kitmap.lives}}</strong></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="faction-card card mt-2">
+            <h4 class="detail-label center-text">Faction</h4>
+            {% with faction=kitmap.faction|get_faction_kitmap uuid=data.uuid %}
+                <div class="faction">
+                    <p>Members <strong class="center-text faction-name">{{faction.name}}</strong></p>
+                    <p>Members <strong>{{faction|get_faction_size}}</strong></p>
+                    <p>Points <strong>{{faction.points}}</strong></p>
+                    <p>DTR <strong>{{faction.dtr|floatformat}}</strong></p>
+                </div>
+            {% endwith %}
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<div class="card mt-2 center-text" id="ores">
+    <h4 class="detail-label">Mined Ores</h4>
+    <div class="ores-box mt-2">
+        {% for ore in kitmap.ores %}
+        <div class="ore center-text">
+            {% if ore == 'DIAMOND' %}
+                <img src="{% static 'images/hcf/ores/DIAMOND.png' %}">
+                <p>Diamond: <strong>{{kitmap.ores|get_data_from_dict:ore}}</strong></p>
+            {% elif ore == 'GOLD' %}
+                <img src="{% static 'images/hcf/ores/GOLD.png' %}">
+                <p>Gold: <strong>{{kitmap.ores|get_data_from_dict:ore}}</strong></p>
+            {% elif ore == 'IRON' %}
+                <img src="{% static 'images/hcf/ores/IRON.png' %}">
+                <p>Iron: <strong>{{kitmap.ores|get_data_from_dict:ore}}</strong></p>
+            {% elif ore == 'REDSTONE' %}
+                <img src="{% static 'images/hcf/ores/REDSTONE.png' %}">
+                <p>Redstone: <strong>{{kitmap.ores|get_data_from_dict:ore}}</strong></p>
+            {% elif ore == 'LAPIS' %}
+                <img src="{% static 'images/hcf/ores/LAPIS.png' %}">
+                <p>Lapis: <strong>{{kitmap.ores|get_data_from_dict:ore}}</strong></p>
+            {% elif ore == 'COAL' %}
+                <img src="{% static 'images/hcf/ores/COAL.png' %}">
+                <p>Coal: <strong>{{kitmap.ores|get_data_from_dict:ore}}</strong></p>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="row mt-2">
+    {% if kitmap.killSaves|length != 0 %}
+    <div class="col-md-6">
+        <div class="card kills center-text">
+            <h4 class="detail-label">Kills</h4>
+
+            {% for kill in kitmap.killSaves|dict_to_list %}
+                <div class="kill">
+                    {% with dead=kill.killed|get_data_by_uuid %}
+                        <a href="{% url 'user' user=dead.name %}">{{dead.name}}</a>
+                    {% endwith %}
+                    was slain by
+                    <a href="{% url 'user' user=data.name %}">{{data.name}}</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+    {% if kitmap.deathSaves|length != 0 %}
+    <div class="col-md-6">
+        <div class="card deaths center-text">
+            <h4 class="detail-label">Deaths</h4>
+            {% for death in kitmap.deathSaves|dict_to_list %}
+                <div class="death">
+                    <a href="{% url 'user' user=data.name %}">{{data.name}}</a>
+                    {% if not death.killer %}
+                        {{death.deathReason}}
+                    {% else %}
+                        was slain by
+                        {% with killer=death.killer|get_data_by_uuid %}
+                            <a href="{% url 'user' user=killer.name %}">{{killer.name}}
+                        {% endwith %}
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

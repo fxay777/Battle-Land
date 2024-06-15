@@ -1,0 +1,12 @@
+.login h3 {
+    color: #6ae691;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.login input {
+    width: 100%;
+    text-align: center;
+    padding: 8px;
+}

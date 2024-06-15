@@ -1,0 +1,152 @@
+/* Profile */
+.profile img {
+    width: 200px;
+}
+
+.profile .name-group {
+    margin: 10px;
+}
+
+.profile .rank {
+    padding: 3px 8px;
+    margin-right: 5px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.profile .name {
+    font-size: 17px;
+    color: #6ae691;
+    font-weight: 600;
+}
+
+#details {
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+#details .group {
+    margin: 5px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+#details .detail {
+    margin: 10px 0;
+    font-size: 15px;
+    color: #c8c8c8;
+}
+
+#details .value {
+    color: white !important;
+    float: right;
+}
+
+/* Stats */
+
+.tab {
+    color: #666D74 !important;
+    margin-right: 35px;
+    font-weight: 600;
+    font-size: 17px;
+}
+
+.tab:last-child {
+    margin-right: 0 !important;
+}
+
+.tabs .active {
+    color: #6ae691 !important;
+    border-bottom: 2px solid #6ae691;
+}
+
+.stat {
+    margin-top: 15px;
+}
+
+.stat .title {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    font-size: 18px;
+    padding-bottom: 15px;
+    font-weight: 600;
+    color: #6ae691;
+}
+
+.stat .title small {
+    color: #666D74;
+}
+
+.stat .key {
+    color: #c8c8c8;
+    padding-top: 15px;
+    font-size: 15px;
+}
+
+.stat .value {
+    color: white !important;
+    float: right;
+}
+
+/* Teams Stuff */
+
+.detail-label{
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    padding-bottom: 15px;
+    font-size: 17px;
+    color: #6ae691;
+}
+
+/* Ores */
+
+.ores-box {
+    display: inline-block;
+}
+
+.ore {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+.ore img {
+    width: 80px;
+}
+
+.ore p {
+    color: #c8c8c8;
+    margin-top: 3px;
+}
+
+.ore strong {
+    color: white;
+}
+
+/* Deaths / Kills */
+
+.deaths img, .kills img {
+    width: 25px;
+    border-radius: 6px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.deaths a, .kills a {
+    color: #6ae691
+}
+
+.death, .kill {
+    margin-top: 5px;
+}
+
+/* Faction */
+
+.faction-name {
+    font-weight: 600;
+    color: #6ae691;
+}
+
+.faction p, .info {
+    color: #c8c8c8;
+}
+
+.faction strong, .info strong {
+    color: white;
+    float: right;
+}

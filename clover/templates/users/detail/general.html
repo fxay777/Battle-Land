@@ -1,0 +1,80 @@
+{% extends 'users/user.html' %}
+{% load humanize %}
+{% load static %}
+{% load user_tags %}
+
+{% block user_general %} active {% endblock %}
+
+{% block detail %}
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="stat card">
+            <div class="center-text title">Practice</div>
+            <div class="info">
+                <div class="key">Wins <span class="value">{% if practice %} {{practice.totalWins}} {% else %} N/A {% endif %}</span>
+                </div>
+                <div class="key">Losses <span class="value">{% if practice %} {{practice.totalLosses}} {% else %} N/A {% endif %}</span>
+                </div>
+                <div class="key">Games <span class="value">{% if practice %} {{practice.totalGames}} {% else %} N/A {% endif %}</span>
+                </div>
+                <div class="key">Kills <span class="value">{% if practice %} {{practice.totalKills}} {% else %} N/A {% endif %}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="stat card">
+            <div class="center-text title">Armadas</div>
+            <div class="info">
+                <div class="key">Kills <span
+                        class="value">{% if hcf %} {{hcf.kills}} {% else %} N/A {% endif %}</span></div>
+                <div class="key">Deaths <span
+                        class="value">{% if hcf %} {{hcf.deaths}} {% else %} N/A {% endif %}</span></div>
+                <div class="key">Lives <span
+                        class="value">{% if hcf %} {{hcf.lives}} {% else %} N/A {% endif %}</span></div>
+                <div class="key">Faction
+                    <span class="value">
+                                        {% if not hcf.faction %}
+                                        N/A
+                                        {% else %}
+                                            {% with fac=hcf.faction|get_faction_hcf uuid=data.uuid %}
+                                                {% if fac.leader == uuid or uuid in fac.members or uuid in fac.officers or uuid in fac.coleaders  %}
+                                                    {{fac.name}}
+                                                {% endif %}
+                                            {% endwith %}
+                                        {% endif %}
+                                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="stat card">
+            <div class="center-text title">KitMap</div>
+            <div class="info">
+                <div class="key">Kills <span
+                        class="value">{% if kitmap %} {{kitmap.kills}} {% else %} N/A {% endif %}</span></div>
+                <div class="key">Deaths <span
+                        class="value">{% if kitmap %} {{kitmap.deaths}} {% else %} N/A {% endif %}</span></div>
+                <div class="key">Lives <span
+                        class="value">{% if kitmap %} {{kitmap.lives}} {% else %} N/A {% endif %}</span></div>
+                <div class="key">Faction
+                    <span class="value">
+                                        {% if not kitmap.faction %}
+                                        N/A
+                                        {% else %}
+                                            {% with fac=kitmap.faction|get_faction_kitmap uuid=data.uuid %}
+                                                {% if fac.leader == uuid or uuid in fac.members or uuid in fac.officers or uuid in fac.coleaders  %}
+                                                    {{fac.name}}
+                                                {% endif %}
+                                            {% endwith %}
+                                        {% endif %}
+                                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

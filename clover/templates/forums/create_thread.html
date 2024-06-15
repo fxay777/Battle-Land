@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load thread_tags %}
+{% load user_tags %}
+{% load humanize %}
+
+{% block title %} Create Thread | Clover Network {% endblock %}
+{% block header %} Create Thread {% endblock %}
+
+{% block tags %}
+<link rel="stylesheet" href="{% static 'css/forums.css' %}">
+{% endblock %}
+
+{% block nav_forums %} active {% endblock %}
+
+{% block content %}
+<div class="thread-header">
+    <div class="bread card">
+        <nav class="bc">
+            <li class="item"><a href="{% url 'forums' %}">Forums</a></li>
+            <li class="item active"><a href="{% url 'create_thread' %}">Create Thread</a></li>
+        </nav>
+    </div>
+</div>
+
+<div class="card create-thread">
+    <form action="{% url 'create_thread' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="token" value="{{token.id}}">
+        <label for="title">Title</label>
+        <div class="form-group tf">
+            <input type="text" max_length="200" name="title" required class="form-control" id="title">
+            <select name="forum" class="form-control" required id="forum" data-placeholder="Select Forum">
+                {% for category in categories %}
+                    {% if user|has_permission_to_create_thread:category %}
+                        <optgroup label="{{category.name}}">
+                            {% for forum in category.get_forums %}
+                            {% if forum.name != 'Overview' %}
+                            <option>{{forum.name}}</option>
+                            {% endif %}
+                            {% endfor %}
+                        </optgroup>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="content">Content</label>
+            <textarea name="content" cols="40" rows="10" maxlength="10000" class="form-control" required=""
+                id="content"></textarea>
+        </div>
+        <button type="submit" id="#submit" class="btn btn-primary">Create Thread</button>
+    </form>
+</div>
+
+{% endblock %}

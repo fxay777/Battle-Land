@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% load static %}
+{% load mathfilters %}
+{% load user_tags %}
+
+{% block title %} {{data.name}} - PvPBar Network {% endblock %}
+
+{% block mainPoint %} 
+<div>{{data.name}}</div>
+{% endblock %}
+
+{% block content %}
+<div class="flex flex-1 flex-row space-x-12">
+    <div class="w-20-percent">
+        <div>
+            <div class="text-center">
+                <h1 class="font-bold text-lg">{{data.name}}</h1>
+                <div class="text-sm color-gold uppercase font-medium">{{data.rankName}}</div>
+            </div>
+            <div class="border bg-title px-3 py-4 rounded-lg mt-2">
+                <img src="https://visage.surgeplay.com/full/{{data.uuid}}" alt="">
+            </div>
+        </div>
+        <div class="mt-2 border bg-title px-3 py-4 rounded-lg">
+            <h1 class="font-medium text-sm">Player Information</h1>
+            <div class="flex flex-1 flex-col space-y-2 mt-2">
+                <div>
+                    <div class="flex flex-row items-center justify-between flex-1 text-xs">
+                        <div class="text-g">First Joined</div>
+                        <div>{{data.firstJoined|to_date}}</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex flex-row items-center justify-between flex-1 text-xs">
+                        <div class="text-g">Last Seen</div>
+                        <div>{{data.lastJoined|to_date}}</div>
+                        <!-- |date: "M j, o" -->
+                    </div>
+                </div>
+                <div>
+                    <div class="flex flex-row items-center justify-between flex-1 text-xs">
+                        <div class="text-g">Views</div>
+                        <div>{{views|length}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-2 border bg-title px-3 py-4 rounded-lg">
+            <h1 class="font-medium text-sm">Guild Information</h1>
+            <div class="flex flex-1 flex-col space-y-2 mt-2">
+                <div>
+                    <div class="flex flex-row items-center justify-between flex-1 text-xs">
+                        <div class="text-g">Name</div>
+                        <div>Null</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex flex-row items-center justify-between flex-1 text-xs">
+                        <div class="text-g">Members</div>
+                        <div>-1</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="w-full">
+        {% if data.currentlyOnline %}
+        <div class="px-5 py-4 w-full bg-green-500 rounded-lg border border-green-400 shadow-sm text-sm">
+            <strong>{{ data.name }}</strong> is currently playing <strong>{{ data.currentlyOn }}</strong>
+        </div>
+        {% else %}
+        <div class="px-5 py-4 w-full bg-red-500 rounded-lg border border-red-400 shadow-sm text-sm">
+            <strong>{{ data.name }}</strong> was last seen playing <strong>{{ data.currentlyOn }}</strong>
+        </div>
+        {% endif %}
+        <div class="grid mt-2 grid-cols-4 gap-4">
+            <div class="mt-2 border bg-title px-3 py-4 rounded-lg text-center">
+                Skywars
+            </div>
+            <div class="mt-2 border bg-title px-3 py-4 rounded-lg text-center">
+                Practice
+            </div>
+            <div class="mt-2 border bg-title px-3 py-4 rounded-lg text-center">
+                UHC Meetup
+            </div>
+            <div class="mt-2 border bg-title px-3 py-4 rounded-lg text-center">
+                HCF
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row hidden">
+    <div class="col-md-4">
+        <div class="player card">
+            <div class="profile center-text">
+                <img src="https://visage.surgeplay.com/bust/{{data.uuid}}">
+                <div class="name-group">
+                    {% if data.webData.rank != 'Default' %}
+                    <span class="rank" style="background: {{data.webData.color|fix_chat_color}}">{{data.webData.rank}}</span>
+                    {% endif %}
+                    <span class="name">{{data.name}}</span>
+                </div>
+            </div>
+            <div id="details">
+                <div class="group">
+                    <div class="detail">First joined <span class="value">{{data.firstJoined}}</span></div>
+                    {% comment %} <div class="detail">Playtime<span class="value">19 hours</span></div> {% endcomment %}
+                    <div class="detail">Views per month<span class="value">{{views|length}}</span></div>
+                </div>
+                <div class="group">
+                    <div class="detail">Last server <span class="value">{{data.lastServer}}</span></div>
+                    <div class="detail">Last online <span class="value">{{data.lastJoined|naturaltime}}</span></div>
+                </div>
+                <div class="group">
+                    <div class="detail">Status <span class="value"> 
+                    {% if data.isBanned %} Banned {% else %} 
+                    {% if data.online %} Online {% else %} Offline {% endif %} {% endif %}</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="data">
+            <div class="selector card center-text">
+                <div class="tabs">
+                    <a class="tab {% block user_general %} {% endblock %}" href="{% url 'user' user=data.name %}">General</a>
+                    <a class="tab {% block user_hcf %} {% endblock %}" href="{% url 'user' user=data.name %}?server=hcf">Armadas</a>
+                    <a class="tab {% block user_practice %} {% endblock %}" href="{% url 'user' user=data.name %}?server=practice">Practice</a>
+                    <a class="tab {% block user_kitmap %} {% endblock %}" href="{% url 'user' user=data.name %}?server=kitmap">KitMap</a>
+                </div>
+            </div>
+            <div class="stats">
+                {% block detail %} {% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

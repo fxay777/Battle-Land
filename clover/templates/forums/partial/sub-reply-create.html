@@ -1,0 +1,6 @@
+<div class="sub-reply-create mt-1">
+    <textarea name="content"
+        maxlength="10000" class="form-control thread-sub-reply-content" minlength="3" required></textarea>
+    <button type="submit" data-reply="{{reply.id}}" data-user="{{user.uuid}}" data-token="{{ csrf_token }}" 
+    class="btn btn-primary thread-sub-reply-create mt-3">Post Reply</button>
+</div>

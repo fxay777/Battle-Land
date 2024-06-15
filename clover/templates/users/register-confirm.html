@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+{% load static %}
+{% load mathfilters %}
+{% load user_tags %}
+
+{% block title %} Register | Clover Network {% endblock %}
+
+{% block header %} Register {% endblock %}
+
+{% block tags %}
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+<script src="{% static 'js/register.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="alert alert-danger register-error" style="display: none;">
+  <strong>Error! </strong><span id="error"></span>
+  <button type="button" class="close" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="player card">
+            <div class="profile center-text">
+                <img src="https://visage.surgeplay.com/bust/{{data.uuid}}">
+                <div class="name-group">
+                    {% if data.webData.rank != 'Default' %}
+                    <span class="rank" style="background: {{data.webData.color|fix_chat_color}}">{{data.webData.rank}}</span>
+                    {% endif %}
+                    <span class="name">{{data.name}}</span>
+                </div>
+                <div class="info">
+                    Registering as <a href="{% url 'user' user=data.name %}">{{data.name}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="register card">
+            <form action="/register/confirm" method="post" id="register-confirm-form">
+                {% csrf_token %}
+                <input type="hidden" name="token" value="{{token.id}}">
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" required class="form-control" id="password" aria-describedby="password" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label for="password2">Confirm Password</label>
+                    <input type="password" name="password2" required class="form-control" id="password2" aria-describedby="password" placeholder="">
+                </div>
+                <button type="submit" id="#submit" class="btn btn-primary">Sign Up</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

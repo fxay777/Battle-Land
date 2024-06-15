@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load user_tags %}
+{% load static %}
+
+{% block title %} 404 | Clover Network {% endblock %}
+
+{% block header %} 404 {% endblock %}
+
+{% block content %}
+<div class="alert alert-danger" role="alert">
+    <h1>Error 404</h1>
+    <hr>
+    <p>It looks like the page your trying to visit does not exist. <a href="{% url 'index' %}">Click here to return to
+            the home page</a></p>
+</div>
+{% endblock %}

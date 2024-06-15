@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load user_tags %}
+{% load static %}
+
+{% block title %} Season II Trailer | Clover Network {% endblock %}
+
+{% block header %} Trailer {% endblock %}
+
+{% block tags %}
+<link rel="stylesheet" href="{% static 'css/trailer.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="title center-text">Trailer</div>
+    <small>You must upload our trailer if you want to have a media rank on Clover. If the trailer has not been
+        downloaded by now
+        click <a href="{% static 'zip/CloverTrailer.zip' %}" download>this</a> to download the trailer.</small>
+
+    <div class="content">
+        <h3>Title</h3>
+        <p>Clover Network | Season II (Saturday 22nd, 12PM EST)</p>
+    </div>
+
+    <div class="content">
+        <h3>Description</h3>
+        <p>
+            The most anticipated release of the Clover Network, HCF releases this Saturday, February 22nd @ 12:00PM EST
+            / 9:00AM PST. (Expand description for more information)
+            <br>
+            <br>
+            KitMap will be releasing this Friday @ 4:00PM EST/ 1:00PM PST
+            <br>
+            Teams will be releasing this Saturday @ 12:00PM EST/ 9:00AM PST
+            <br>
+            <br>
+            All bans and blacklists have been reset. (Except for Chargebacks)
+            <br>
+            <br>
+            Our trailer didn’t contain all of our new and amazing features, you can read more on those on our website or
+            here: https://clover.gg/two
+            <br>
+            <br>
+            Upload this trailer for a chance to win <strong>$50 Paypal</strong>!. If you are a youtuber and you meet our requirements,
+            feel free to apply for youtuber @ https://clover.gg/youtuber and upload this trailer.
+            <br>
+            <br>
+            Upload this trailer via https://clover.gg/trailer, the link downloaded has both a description and title to
+            use. Hope to see you guys there!
+            <br>
+            <br>
+            IP: clover.gg
+            <br>
+            Store: <a href="https://store.clover.gg">https://store.clover.gg</a>
+            <br>
+            Teamspeak: ts.clover.gg
+            <br>
+            Discord: <a href="https://clover.gg/discord">https://clover.gg/discord</a>
+            <br>
+            Website:<a href="{% url 'index' %}">https://clover.gg</a>
+        </p>
+    </div>
+</div>
+
+<script>
+$(document).ready(function () {
+    window.location.href = '/static/zip/CloverTrailer.zip';
+});
+</script>
+{% endblock %}

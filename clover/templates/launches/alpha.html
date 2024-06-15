@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load user_tags %}
+{% load static %}
+
+{% block title %} Alpha Launch | Clover Network {% endblock %}
+
+{% block header %}
+<h1>Alpha Launch</h1>
+{% endblock %}
+
+{% block tags %}
+<link rel="stylesheet" href="{% static 'css/launch.css' %}">
+<script src="{% static 'js/launches/alpha.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="block">
+    <div class="block-title">
+    Alpha Launch <span id="time">in 0 seconds</span> (50% Off Sale <a href="https://store.clover.gg">store.clover.gg</a>%)
+    </div>
+    
+    <div class="content-server">
+        <h3>Giveaway</h3>
+        <a href="https://clover.gg/giveaway">clover.gg/giveaway</a>
+    </div>
+
+    <div class="content-server">
+        <h3>Practice 3PM EST (7/12/19 Friday)</h3>
+        <ul>
+            <li>Ranked and Unranked matches</li>
+            <li>Staff Hosted tournaments</li>
+            <li>Smooth KB / Potions (Prone to change in the future depending on community reaction)</li>
+            <li>Player Hosted Events</li>
+            <li>Web leaderboards - <a href="{% url 'leaderboards' %}">Click Me to view leaderboards</a></li>
+            <li>+ More</li>
+        </ul>
+    </div>
+
+    <div class="content-server">
+        <h3>Kits 3PM EST (7/12/19 Friday)</h3>
+        <ul>
+            <li>Diamond, Rogue, Archer, Bard, Builder and <strong>**NEW**</strong> Unknown Kit.</li>
+            <li>Smooth KB / Potions. (Prone to change in the future depending on community reaction)</li>
+            <li>At the end of each season, the #1 player will recieve the elusive [#1] Tag and $25 giftcard.</li>
+            <li>Koths every 5 minutes, with a 5 minute cap time</li>
+            <li>King The Kill event with <a href="{% url 'user' user='Bluberie' %}">Bluberie</a>, as the first king. (Will take place 1 hour after SOTW)</li>
+            <li>30 Minute SOTW Timer with <code>/sotw enable</code>.</li>
+            <li>25 Man Factions, 0 Allies.</li>
+            <li>Map Kit: Protection 2, Sharpness 1.</li>
+            <li>Carepackges that spawn in the warzone randomily every 5 minutes.</li>
+            <li>Pearling through fencegates enabled.</li>
+            <li>Player Bounties that appear randomily every 2-3 minutes.</li>
+            <li>Faction Missions, complete to earn capture points.</li>
+            <li>Faction Upgrades that require capture points to purchase.</li>
+            <li>Enderdragon Event, kill the dragon to recieve rewards. (Will take place once SOTW timer expires)</li>
+            <li>Warzone Size: 300 Blocks</li>
+            <li>World Limit: 3000 Blocks</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

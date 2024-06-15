@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load user_tags %}
+{% load static %}
+{% load humanize %}
+
+{% block tags %}
+<link rel="stylesheet" href="{% static 'css/admin/ranks.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-2">
+        <div id="ranks" class="card">
+            <ul>
+                {% for rank in ranks %}
+                    <li><a href="#" style="color: {{rank.color|fix_chat_color}}">{{rank.name}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-10">
+        <div id="rank-info" class="card center-text">
+            <div>Admin</div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

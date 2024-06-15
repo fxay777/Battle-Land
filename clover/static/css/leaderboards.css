@@ -1,0 +1,165 @@
+#categories {
+    display: inline-block;
+    width: 100%;
+}
+
+.category {
+    border-bottom: 4px solid rgba(255, 255, 255, 0.025);
+    flex: 1;
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    line-height: 50px;
+    text-align: center;
+    color: #666D74;
+    cursor: pointer;
+}
+
+#categories .active {
+    color: #6ae691 !important;
+    border-color: #6ae691 !important;
+}
+
+.selector {
+    float: right;
+}
+
+.tab {
+    color: #666D74 !important;
+    margin-right: 25px;
+    font-weight: 600;
+    font-size: 15px;
+    padding-bottom: 5px;
+}
+
+.tab:last-child {
+    margin-right: 0 !important;
+}
+
+.tabs .active {
+    color: #6ae691 !important;
+    border-bottom: 2px solid #6ae691;
+}
+
+/* Leaderboard */
+
+.tr a {
+    color: white;
+}
+
+.tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    display: flex;
+    align-items: center;
+    height: 60px;
+}
+
+.tr .ranking {
+    font-weight: 600;
+    font-size: 18px;
+    text-align: center;
+    flex-basis: 90px;
+    color: #3d454c;
+    padding: 0 5px;
+}
+
+.tr .player {
+    flex: 1 1 auto;
+    -webkit-box-flex: 1;
+}
+
+.tr .rank {
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.tr img {
+    width: 24px;
+    height: 100%;
+    float: left;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.tr .value {
+    text-align: right;
+    font-weight: 600;
+    font-size: 15px;
+    padding-right: 16px;
+    color: #6ae691;
+}
+
+.tr .player span {
+    font-size: 15px;
+    font-weight: 600;
+    padding: 1px 6px;
+}
+
+.tr .one {
+    color: #c4a264;
+}
+
+.tr .two {
+    color: #948989;
+}
+
+.tr .three {
+    color: #785736;
+}
+
+.pagination {
+    justify-content: center;
+}
+
+.page {
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    text-decoration: none;
+    min-width: 30px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 5px;
+    padding: 0 10px;
+    font-weight: 600 !important;
+    margin: 0 4px 8px;
+    color: #d3e6ff !important;
+}
+
+.pagination .active {
+    background: #6ae691;
+    color: #614c27;
+}
+
+/* UHC */
+
+.game .title {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    font-size: 18px;
+    padding-bottom: 15px;
+    font-weight: 600;
+    color: #6ae691;
+}
+
+.game .title small {
+    color: #666D74;
+}
+
+.game .key {
+    color: #c8c8c8;
+    padding-top: 15px;
+    font-size: 15px;
+}
+
+.game .value {
+    color: white !important;
+    float: right;
+}
+
+.scenarios {
+    margin-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    padding-top: 15px;
+}

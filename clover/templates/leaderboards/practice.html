@@ -1,0 +1,63 @@
+{% extends 'leaderboards/leaderboards.html' %}
+{% load static %}
+{% load humanize %}
+{% load user_tags %}
+{% load leaderboard_tags %}
+
+{% block title %} Practice Leaderboards | Clover Network {% endblock %}
+
+{% block nav_leaderboards %} active {% endblock %}
+
+{% block header %} Practice {% endblock %}
+
+{% block lb_practice %} active {% endblock %}
+
+{% block lb_data %}
+<div id="stats">
+    <div class="label card center-text">
+        <div class="selector">
+            <div class="tabs">
+                {% for ladder in data %}
+                    <a class="tab {% if ladder.ladder == selected_ladder %} active {% endif %}" href="{% url 'practice_more' ladder=ladder.ladder page=1|as_str %}">{{ladder.ladder}}</a>
+                {% endfor %}   
+            </div>
+        </div>
+    </div>
+    <div class="card mt-2">
+        <div class="leaderboard">
+            {% for ladder in data.values %}
+                {% if ladder.ladder == selected_ladder %}
+                    {% for player in ladder.data.values|shorten:10 %}
+                        <div class="tr">
+                            <div class="ranking {{forloop.counter|apnumber}}">{{forloop.counter|fix_counter:page|ordinal}}</div>
+                            <a class="player" href="{% url 'user' user=player.name %}">
+                                <img src="https://cravatar.eu/helmavatar/{{player.uuid}}/24.png"></img>
+                                {% with player.uuid|get_data_by_uuid as data%}
+                                    {% if data.webData.rank != 'Default' %}
+                                        <span class="rank" style="background: {{data.webData.color|fix_chat_color}}">{{data.webData.rank}}</span>
+                                    {% endif %}
+                                {% endwith %}
+                                <span class="name">{{player.name}}</span>
+                            </a>
+                            <div class="value">{{player.elo}} ELO</div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="pagination mt-4">
+            {% if page == 0 %}
+            <a id="page-prev" class="page" href="{% url 'practice_more' ladder=selected_ladder page=page %}"><i class="fa fa-angle-left"></i> <b>Previous</b></a>
+            {% else %}
+            <a id="page-prev" class="page" href="{% url 'practice_more' ladder=selected_ladder page=page|subtract %}"><i class="fa fa-angle-left"></i> <b>Previous</b></a>
+            {% endif %}
+            <a id="1" class="page {% if page == 1|as_str %} active {% endif %}" href="{% url 'practice_more' ladder=selected_ladder page=1|as_str %}">1</a>
+            <a id="2" class="page {% if page == 2|as_str %} active {% endif %}" href="{% url 'practice_more' ladder=selected_ladder page=2|as_str %}">2</a>
+            <a id="3" class="page {% if page == 3|as_str %} active {% endif %}" href="{% url 'practice_more' ladder=selected_ladder page=3|as_str %}">3</a>
+            <a id="4" class="page {% if page == 4|as_str %} active {% endif %}" href="{% url 'practice_more' ladder=selected_ladder page=4|as_str %}">4</a>
+            <a id="5" class="page {% if page == 5|as_str %} active {% endif %}" href="{% url 'practice_more' ladder=selected_ladder page=5|as_str %}">5</a>
+            <a id="page-prev" class="page" href="{% url 'practice_more' ladder=selected_ladder page=page|add %}"><b>Next</b> <i class="fa fa-angle-right"></i></a>
+        </div>
+    </div>
+</div>
+{% endblock %}

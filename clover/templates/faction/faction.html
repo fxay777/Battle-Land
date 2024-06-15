@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load user_tags %}
+{% load faction_tags %}
+{% load humanize %}
+{% load static %}
+
+{% block title %} Faction {{faction.name}} | Clover Network {% endblock %}
+{% block header %} Faction {{faction.name}} {% endblock %}
+
+{% block tags %}
+<link rel="stylesheet" href="{% static 'css/faction.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card faction-info">
+            <div class="title center-text">
+                {{faction.name}}
+            </div>
+            <div class="details">
+                <div class="value">Created At<span>{{faction.creationDate}}</span></div>
+                <div class="value">Members<span>{{faction|get_faction_size}}</span></div>
+                <div class="value">Points<span>{{faction.points}}</span></div>
+                <div class="value">Balance<span>${{faction.balance|intcomma}}</span></div>
+                <div class="value">Is Open<span>{{faction.open}}</span></div>
+                <div class="value">DTR<span>{{faction.dtr}}</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="members card">
+            <div class="title center-text">
+                Members
+            </div>
+            <div class="member">
+                {% with faction.leader|get_data_by_uuid as leader %}
+                <a class="player" href="{% url 'user' user={{leader.name}}%">
+                    <img src="https://cravatar.eu/helmavatar/{{leader.uuid}}/32.png">
+                    <span class="rank" style="background: #FF5555">Leader</span>
+                    <span class="name">{{leader.name}}</span>
+                </a>
+                {% endwith %}
+            </div>
+            {% for member in faction.coleaders %}
+                <div class=" member">
+                    {% with member|get_data_by_uuid as member %}
+                    <a class=" player" href="{% url 'user' user={{member.name}}%">
+                        <img src="https://cravatar.eu/helmavatar/{{member.uuid}}/32.png">
+                        <span class="rank" style="background: #00AAAA">Co Leader</span>
+                        <span class="name">{{member.name}}</span>
+                    </a>
+                    {% endwith %}
+                    {% if user.is_authenticated %}
+                        {% if faction.leader == user.uuid or user|has_permission:"admin" %}
+                            <div class="btns">
+                                <button type="submit" data-user="{{member.uuid}}" class="btn btn-primary faction-promote-user">Promote</button>
+                                <button type="submit" data-user="{{member.uuid}}" class="btn btn-ter faction-promote-user">Demote</button>
+                                <button type="submit" data-user="{{member.uuid}}" class="btn btn-danger faction-kick-user">Kick</button>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+            {% for member in faction.officers %}
+                <div class=" member">
+                    {% with member|get_data_by_uuid as member %}
+                    <a class=" player" href="{% url 'user' user={{member.name}}%">
+                        <img src="https://cravatar.eu/helmavatar/{{member.uuid}}/32.png">
+                        <span class="rank" style="background: #FF55FF">Officer</span>
+                        <span class="name">{{member.name}}</span>
+                    </a>
+                    {% endwith %}
+                    {% if user.is_authenticated %}
+                        {% if faction.leader == user.uuid or user|has_permission:"admin" %}
+                            <div class="btns">
+                                <button type="submit" data-user="{{member.uuid}}" class="btn btn-primary faction-promote-user">Promote</button>
+                                <button type="submit" data-user="{{member.uuid}}" class="btn btn-ter faction-promote-user">Demote</button>
+                                <button type="submit" data-user="{{member.uuid}}" class="btn btn-danger faction-kick-user">Kick</button>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+            {% for member in faction.members %}
+                <div class=" member">
+                    {% with member|get_data_by_uuid as member %}
+                    <a class=" player" href="{% url 'user' user={{member.name}}%">
+                        <img src="https://cravatar.eu/helmavatar/{{member.uuid}}/32.png">
+                        <span class="name">{{member.name}}</span>
+                    </a>
+                    {% endwith %}
+                    {% if user.is_authenticated %}
+                        {% if faction.leader == user.uuid or user|has_permission:"admin" %}
+                            <div class="btns">
+                                <button type="submit" data-user="{{member.uuid}}" class="btn btn-primary faction-promote-user">Promote</button>
+                                <button type="submit" data-user="{{member.uuid}}" class="btn btn-ter faction-promote-user">Demote</button>
+                                <button type="submit" data-user="{{member.uuid}}" class="btn btn-danger faction-kick-user">Kick</button>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

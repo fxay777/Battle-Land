@@ -1,0 +1,176 @@
+.category {
+  margin-bottom: 15px;
+}
+
+.thread {
+  display: flex;
+}
+
+.category .title {
+  background-color: #282C30 !important;
+}
+
+.thread-header .title .label {
+  margin-right: 6px;
+  padding: 5px 23px;
+  font-size: 15px;
+
+  background: #E6BA6A;
+  color: white;
+  border-radius: 12px;
+
+  display: inline-block;
+
+  vertical-align: middle;
+}
+
+.thread-header #title {
+  display: inline;
+}
+
+.thread-header #saving-indicator {
+  display: inline;
+  float: right;
+  font-size: 13px;
+  line-height: 30px;
+}
+
+.thread-header .title .title-holder {
+  color: #6AE691;
+  font-size: 23px;
+  font-weight: 700;
+
+  display: inline-block;
+
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+
+.author-block {
+  width: 25%;
+  margin-right: 20px;
+}
+
+.thread-content {
+  width: 75%;
+}
+
+.author-block .author img {
+  width: 75%; 
+  border-radius: 200px;
+}
+
+.deleted {
+  color: red;
+}
+
+.author-block .author .username {
+  margin-top: 13px;
+  margin-bottom: 13px;
+}
+
+.author-block .author .rank {
+  padding: 3px 8px;
+  margin-right: 5px;
+  border-radius: 4px;
+  font-weight: 600;
+  color: white;
+}
+
+.author-block .author .name {
+  font-size: 17px;
+  color: #6ae691;
+  font-weight: 600;
+}
+
+.author-block .thread-stats {
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.author-block .thread-stats .key {
+  margin: 10px 0;
+  font-size: 15px;
+  color: #c8c8c8;
+}
+
+.author-block .thread-stats .value {
+  color: white !important;
+  float: right;
+}
+
+.thread-content .date {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  font-size: 12px;
+}
+
+.replies {
+  display: block;
+  margin-top: 12px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+  flex-wrap: wrap;
+}
+
+.reply {
+  display: flex;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.reply .reply-tools {
+  float: right;
+}
+
+.reply .reply-tools .btn {
+  padding: 3px 8px;
+  margin-left: 5px;
+  font-size: 10px;
+}
+
+.reply .content-block {
+  flex-grow: 1;
+  
+}
+
+.reply .date {
+  font-size: 10px;
+  color: #C8C8C8 !important;
+}
+
+.reply .img-block {
+  margin-right: 8px;
+  margin-top: 2px;
+  
+  display: flex;
+  flex-direction: column;
+}
+
+.reply .img-block .line {
+  border-right: 2px solid;
+  flex-grow: 1;
+  margin-top: 8px;
+  width: 50%;
+}
+
+.reply img {
+  border-radius: 4px;
+}
+
+#reply-delete-modal .m-footer {
+  padding: 1rem;
+}
+
+.thread-tools #delete {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+}
+
+.thread-tools #lock {
+  position: absolute;
+  bottom: 10px;
+  right: 50px;
+}

@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+{% load static %}
+{% load mathfilters %}
+{% load user_tags %}
+
+{% block title %} Register | Clover Network {% endblock %}
+
+{% block header %} Register {% endblock %}
+
+{% block tags %}
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="card">
+    <h3 class="center-text">Register</h3>
+    <div class="cards">
+        <div class="card text-white bg-dark mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Step #1</h5>
+                <p class="card-text">Connect to <code>clover.gg</code> and use the command
+                    <code>/register <email></code>. Make sure you're using an email that you have access to.
+                </p>
+                <p class="card-text"><small class="text-muted">
+                        If you use an incorrect email while signing up, you must wait
+                        <strong>2 minutes</strong> before using the command again. If you're banned, you can still join
+                        the
+                        server through the ban-hub.</small></p>
+            </div>
+        </div>
+        <div class="card text-white bg-dark mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Step #2</h5>
+                <p class="card-text">Login on to your email and look for a email from <code>admin@clover.gg</code>.
+                    Click on the link provided in the email and continue your signup process.
+                </p>
+                <p class="card-text"><small class="text-muted">
+                        Check your spam folder if you cannot find the email, or wait 2 minutes to use the command again.
+                    </small>
+                </p>
+            </div>
+        </div>
+        <div class="card text-white bg-dark mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Step #3</h5>
+                <p class="card-text">Entire a valid password and then finish your signup process. 
+                After, you will be presented with a login screen, just re-type your details and your logged in!
+                </p>
+                <p class="card-text"><small class="text-muted">
+                       Ensure that the password is at least 3 characters long, and is a good password. 
+                       Your password is safe with us!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

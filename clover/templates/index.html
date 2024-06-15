@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load thread_tags %}
+{% load user_tags %}
+{% load humanize %}
+
+{% block title %} PvPBar Network {% endblock %}
+{% block header %} Home {% endblock %}
+
+{% block nav_home %} active {% endblock %}
+{% block content %}
+{% for announcement in news %}
+<div class="flex flex-1 flex-row space-x-12 mt-4">
+    <img
+      src="https://pbs.twimg.com/media/DNysMhJVAAANA6t.png"
+      class="rounded-lg shadow-md"
+      width="500"
+    />
+    <div>
+      <h1 class="text-3xl font-bold">
+        {{ announcement.title }}
+      </h1>
+      <h3 class="text-sm font-medium text-g">
+        {% with announcement.author.get_data as data %}
+            Posted on {{announcement.created_at|format_time}} by <a href="{% url 'user' data.name %}" class="color-gold">{{ data.name }}</a>
+        {% endwith %}
+      </h3>
+      <div class="w-full mt-2 line"></div>
+      <div class="mt-2 text-sm text-g font-extralight">
+        {{announcement.short_content|striptags|linebreaksbr|urlize}}
+      </div>
+      <div class="mt-4">
+        <a
+          href="{% url 'thread' id=announcement.id title=announcement.get_slug %}"
+          class="
+            w-full
+            bg-gold
+            text-black
+            py-3
+            rounded-lg
+            font-bold
+            px-32
+          "
+        >
+          Read Me
+        </a>
+      </div>
+    </div>
+</div>
+
+{% if forloop.counter != news|length %}
+<div class="w-full mt-4 line"></div>
+{% endif %}
+
+{% endfor %}
+{% endblock %}

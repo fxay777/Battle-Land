@@ -1,0 +1,116 @@
+.category .title {
+    background-color: #282C30 !important;
+
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.category {
+    border-radius: 4px !important;
+    background: rgba(43, 49, 54, 0.97) !important;
+    box-shadow: 0 10px 12px rgba(0, 0, 0, 0.1);
+    border: none;
+}
+
+.category .forums {
+    border: none !important;
+}
+
+.forum:first-of-type {
+    padding-top: 0 !important;
+}
+
+.forum .name span {
+    margin-left: 1px;
+}
+
+.category .forum span, .author, .author {
+    font-size: 11px;
+    display: block;
+    font-weight: 100;
+    margin-top: -4px;
+}
+
+.author small {
+    font-size: 11px;
+    color: white !important;
+    font-weight: 100;
+}
+
+
+.thread img {
+    width: 11px;
+    margin-right: 2px;
+    border-radius: 2px;
+}
+
+.forum td:nth-child(2) {
+    margin-left: 50px !important;
+}
+
+.thread span {
+    font-size: 11px !important;
+}
+
+.th {
+    border: none !important;
+}
+
+.thread {
+    margin-right: 0 !important;
+}
+
+th,
+td,
+tr {
+    border-top: none !important;
+}
+
+thead th {
+    border-bottom: none !important;
+}
+
+.forum th,
+.forum td {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.forum:last-child td, .forum:last-child th {
+    border-bottom: none !important;
+}
+
+.category .forum h3 {
+    font-size: 13px !important;
+    font-weight: 600;
+    color: #C8C8C8;
+}
+
+.forum .name a {
+    font-size: 18px;
+    font-weight: 600;
+    color: #E6BA6A
+}
+
+.forum .name small {
+    display: block;
+    color: #C8C8C8;
+    font-size: 13px;
+}
+
+.tf {
+    display: flex;
+}
+
+.threads .thread_creator {
+    font-size: 11px !important;
+}
+
+.create-thread #title {
+    width: 69%;
+    margin-right: 10px;
+}
+
+.create-thread #forum {
+    width: 30%;
+   
+}

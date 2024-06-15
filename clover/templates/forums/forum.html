@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load thread_tags %}
+{% load user_tags %}
+{% load humanize %}
+
+{% block title %} {{forum.name}} - PvPBar Network {% endblock %}
+
+{% block mainPoint %} 
+<a href="/forums" class="bg">Forums</a>
+{% include 'svg/right_chev.html' %}
+<a href="{% url 'forum' forum=forum.get_slug %}" class="bg">{{forum.name}}</a>
+{% endblock %}
+
+{% block bcrum_end %} <a href="{% url 'create_thread' %}" class="px-4 py-2 text-sm bg-green-300 text-black rounded-full">Create Thread</a> {% endblock %}
+
+{% block nav_forums %} active {% endblock %}
+
+{% block content %}
+<div>
+    <div class="px-5 py-3 bg-gold text-sm font-bold text-black rounded-t-lg">
+        {{ forum.name }}
+        </div>
+        <div class="px-5 py-3 bg-title border border-1 rounded-b-lg shadow-sm">
+            <div class="flex flex-1 flex-col space-y-3">
+                {% for thread in forum.get_threads %}
+                <div class="border-line">
+                    <div class="flex flex-1 flex-row justify-between">
+                        <div class="font-medium">
+                            <a href="{% url 'thread' id=thread.id title=thread.get_slug %}">{{thread.title}}</a>
+                            <div class="text-xs text-g">
+                                {% with thread.author.get_data as author %}
+                                Posted By
+                                <a class="font-medium color-gold" href="{% url 'user' user=author.name %}">
+                                    {{author.name}}
+                                </a>
+                                {{thread.created_at|naturaltime}}
+                                {% endwith %}
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex flex-1 flex-row items-center space-x-32 text-sm">
+                                <div>
+                                    <div class="flex flex-1 flex-col items-center">
+                                        <h3 class="text-g">Replies</h3>
+                                        <span class="text-white">{{thread.get_all_replies_count}}</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="thread">
+                                        {% with thread.get_latest_reply as reply %}
+                                        {% if reply %}
+                                        <div class="flex flex-1 flex-col items-center">
+                                            <h3 class="text-g">Last Reply</h3>
+                                            <span class="text-white">
+                                                {% with reply.author.get_data as author %}
+                                                <a href="{% url 'user' user=author.name %}">
+                                                    {{author.name}}, <small class="text-g">{{reply.created_at|short_ntime}}</small>
+                                                </a>
+                                                {% endwith %}
+                                            </span>
+                                        </div>
+                                        {% else %}
+                                        <div>
+                                            <h3>Empty!</h3>
+                                            <span class="text-g text-xs">Be the first to post!</span>
+                                        </div>
+                                        {% endif %}
+                                        {% endwith %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% if forloop.counter != forum.get_threads|length %}
+                <div class="w-full line"></div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+</div>
+{% endblock %}

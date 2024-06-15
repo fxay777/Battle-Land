@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block tags %}
+<script src="{% static 'js/leaderboard.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/leaderboards.css' %}">
+{% endblock %}
+
+{% block content %}
+<div id="categories" class="center-text card">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="category {% block lb_practice %}{% endblock %}" data-href="{% url 'practice' %}">
+                Practice
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="category {% block hcf %}{% endblock %}" data-href="{% url 'hcf' %}">
+                Armadas
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="category {% block lb_kitmap %}{% endblock %}" data-href="{% url 'kitmap' %}">
+                KitMap
+            </div>
+        </div>
+    </div>
+</div>
+{% block lb_data %}
+{% endblock %}
+
+{% endblock %}

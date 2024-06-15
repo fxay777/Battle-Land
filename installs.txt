@@ -1,0 +1,7 @@
+pip install django
+pip install pymongo
+pip install django-mathfilters
+pip install django-emoji
+pip install django-smtp-ssl
+pip install djongo
+pip install django-extensions

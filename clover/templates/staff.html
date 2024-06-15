@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load user_tags %}
+{% load static %}
+
+{% block title %} Staff - PvPBar Network {% endblock %}
+
+{% block nav_staff %} active {% endblock %}
+
+{% block mainPoint %} 
+<div class="bg">Staff</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="flex flex-1 flex-col space-y-4">
+    {% for segment in data %}
+
+    <div>
+        {% with segment.rank as rank %}
+        <div class="py-3 px-5 rounded-md font-bold text-black shadow-sm text-sm" style="background-color: {{rank.color|fix_chat_color}};">
+            {{rank.name}}
+        </div>
+        
+        {% if segment.players|length > 0 %}
+        <div class="mt-4 grid grid-cols-4 items-center gap-5">
+            {% for player in segment.players %}
+            <span class="relative inline-flex rounded-md shadow-sm">
+                <a href="{% url 'user' user=player.name %}" class="flex flex-1 justify-center flex-col items-center space-x-2 bg-title border py-3 rounded-lg shadow-md">
+                    <img src="https://visage.surgeplay.com/bust/{{player.uuid}}" class="w-28 rounded-full">
+                    <div style="color:{{rank.color|fix_chat_color}}" class="text-sm font-medium">{{player.name}}</div>
+                </a>
+                
+                {% if player.currentlyOnline %}
+                <span class="flex absolute h-3 w-3 top-0 right-0 -mt-1 -mr-1">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                  </span>
+                {% else %}
+                  <span class="flex absolute h-3 w-3 top-0 right-0 -mt-1 -mr-1">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                    </span>
+                {% endif %}
+              </span>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% endwith %}
+    </div>
+    {% endfor %}
+</div>
+
+<!-- <div class="ranks-block center-text">
+    <div class="ranks">
+        {% for segment in data %}
+            {% if segment.players|length > 0 %}
+                <div class="rank mt-4">
+                    {% with segment.rank as rank %}
+                    <div class="title" style="background-color:{{rank.color|fix_chat_color}}">{{rank.name}}</div>
+                    <div class="body mt-4">
+                        {% for player in segment.players %}
+                        <a href="{% url 'user' user=player.name %}" class="player">
+                            <img src="https://visage.surgeplay.com/bust/{{player.uuid}}">
+                            <p style="color:{{rank.color|fix_chat_color}}">{{player.name}}</p>
+                        </a>
+                        {% endfor %}
+                    </div>
+                    {% endwith %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div> -->
+{% endblock %}
